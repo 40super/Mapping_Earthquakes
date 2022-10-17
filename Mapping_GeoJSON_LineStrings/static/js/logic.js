@@ -33,27 +33,36 @@ let map = L.map('mapid', {
 })
 // We create the dark view tile layer that will be an option for our map.
 
-
+// Create a style for the lines.
+let myStyle = {
+    color: "#ffffa1",
+    weight: 2
+}
 
 // Pass our map layers into our layers control and add the layers control to the map.
 L.control.layers(baseMaps).addTo(map);
 
 
-let airportData = "https://raw.githubusercontent.com/40super/Mapping_Earthquakes/Mapping_GeoJSON_Points/Mapping_GeoJSON_Points/majorAirports.json";
+let torontoData = "https://raw.githubusercontent.com/40super/Mapping_Earthquakes/Mapping_GeoJSON_LineStrings/Mapping_GeoJSON_LineStrings/torontoRoutes.json";
 // An array containing each city's location, state, and population.
 
 // Coordinates for each point to be used in the line.
 // Grabbing our GeoJSON data.
-d3.json(airportData).then(function(data) {
+// Grabbing our GeoJSON data.
+d3.json(torontoData).then(function(data) {
     console.log(data);
   // Creating a GeoJSON layer with the retrieved data.
+
+
   L.geoJSON(data, {
-    onEachFeature: function(feature, layer) {
-      console.log(layer);  
-      layer.bindPopup("<h2>" + feature.properties.city + "</h2>");
-     }
-}).addTo(map);
+    style: myStyle,
+    onEachFeature: function(feature,layer){
+        layer.bindPopup("<h3> Airline" + feature.properties.airline + "</h3> <hr> <h3> Destination: " 
+        + feature.properties.dst + "</h3>");    
+    }
+  }).addTo(map);
 });
+
 
 
 
