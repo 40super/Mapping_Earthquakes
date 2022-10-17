@@ -1,10 +1,10 @@
 console.log("working");
 console.log("Adam Karim Testing");
 
-let streets = L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
+let light = L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
     attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
     maxZoom: 18,
-    id: 'mapbox/streets-v11',
+    id: 'mapbox/light-v10',
    //tileSize: 512,
     //zoomOffset: -1,
     accessToken: API_KEY
@@ -19,7 +19,7 @@ attribution: 'Map data © <a href="https://www.openstreetmap.org/">OpenStreetMap
 
 // Create a base layer that holds both maps.
 let baseMaps = {
-    Street: streets,
+    Light: light,
     Dark: dark
 };
 
@@ -29,7 +29,7 @@ let baseMaps = {
 let map = L.map('mapid', {
     center: [30, 30],
     zoom: 2,
-    layers: [streets]
+    layers: [light]
 })
 // We create the dark view tile layer that will be an option for our map.
 
